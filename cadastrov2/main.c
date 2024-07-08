@@ -44,7 +44,7 @@ int listar(tProd* vProd, int qtd) {
    int i;
    system("cls");
    printf("+-------------------------------------------------+\n");
-   printf("|              Listagem de Produtos               |\n");
+   printf("|              Listagem de Produtos:               |\n");
    printf("+-------------------------------------------------+\n");
    for (i=0; i<qtd; i++) {
       printf("| %5d | %-30s | %6.2f |\n", vProd[i].codigo, vProd[i].descricao, vProd[i].preco);
