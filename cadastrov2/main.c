@@ -7,17 +7,20 @@ typedef struct {
    float preco;
 } tProd;
 
-int mostra_menu() {
-   int opcao;
-   system("cls");
-   printf("Menu Principal\n");
-   printf("1 - Incluir\n");
-   printf("2 - Listar\n");
-   printf("3 - Pesquisar\n");
-   printf("0 - Sair\n");
-   printf("Tecle opcao.: ");
-   scanf("%d", &opcao);
-   return opcao;
+int mostra_menu()
+{
+    int opcao;
+    system("cls");
+    printf("+------------------------------------------------+ \n");
+    printf("|                 MEU PRINCIPAL                  | \n");
+    printf("+------------------------------------------------+ \n");
+    printf("1 - Incluir.:.. \n");
+    printf("2 - Listar.:... \n");
+    printf("3 - Pesquisar.:... \n");
+    printf("0 - Sair.:..... \n");
+    printf("Tecle a opcao:  \n");
+    scanf("%d", &opcao);
+    return opcao;
 }
 
 int inclusao(tProd* vProd, int qtd) {
@@ -44,7 +47,7 @@ int listar(tProd* vProd, int qtd) {
    int i;
    system("cls");
    printf("+-------------------------------------------------+\n");
-   printf("|              Listagem de Produtos:               |\n");
+   printf("|              Listagem de Produtos               |\n");
    printf("+-------------------------------------------------+\n");
    for (i=0; i<qtd; i++) {
       printf("| %5d | %-30s | %6.2f |\n", vProd[i].codigo, vProd[i].descricao, vProd[i].preco);
@@ -116,4 +119,3 @@ int main()
 
    } while (opcao != 0);
 }
-
