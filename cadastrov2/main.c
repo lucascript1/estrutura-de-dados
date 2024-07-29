@@ -94,7 +94,7 @@ int pesquisar(tProd* vProd, int qtd)
         {
             printf("| %5d | %-30s | %6.2f |\n", vProd[i].codigo, vProd[i].descricao, vProd[i].preco);
             cont++;
-        }
+        },
     }
     printf("+-------------------------------------------------+\n");
     printf("| %3d Registros Encontrados                       |\n", cont);
