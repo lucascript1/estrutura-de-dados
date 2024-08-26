@@ -22,6 +22,7 @@ int mostra_menu()
     printf("4 - Gravar.:... \n");
     printf("5 - Ler arquivo:... \n");
     printf("6 - Ordenar produtos:...\n");
+    printf("7 - Alterar produto:...\n");
     printf("0 - Sair.:..... \n");
     printf("Tecle a opcao:  \n");
     scanf("%d", &opcao);
@@ -48,13 +49,13 @@ int inclusao(tProd* vProd, int qtd)
     system("cls");
     printf("Inclusao\n");
 
-    // codigo automatico
+
     vProd[qtd].codigo = qtd + 1;
 
     printf("descricao.: ");
-    getchar(); // para consumir o '\n' deixado pelo scanf anterior
+    getchar();
     fgets(vProd[qtd].descricao, sizeof(vProd[qtd].descricao), stdin);
-    vProd[qtd].descricao[strcspn(vProd[qtd].descricao, "\n")] = '\0'; // Remove o '\n'
+    vProd[qtd].descricao[strcspn(vProd[qtd].descricao, "\n")] = '\0';
 
     printf("preco.....: ");
     scanf("%f", &vProd[qtd].preco);
@@ -97,9 +98,9 @@ int pesquisar(tProd* vProd, int qtd)
     char buscar[50];
     system("cls");
     printf("Informe a Expressao de Busca: ");
-    getchar(); // para consumir o '\n' deixado pelo scanf anterior
+    getchar();
     fgets(buscar, sizeof(buscar), stdin);
-    buscar[strcspn(buscar, "\n")] = '\0'; // Remove o '\n'
+    buscar[strcspn(buscar, "\n")] = '\0';
 
     printf("+-------------------------------------------------+\n");
     printf("| Pesquisando Produto '%s'", buscar);
@@ -179,6 +180,50 @@ int ler_arquivo(tProd* vProd)
     return cont;
 }
 
+void alterar_produto(tProd* vProd, int qtd)
+{
+    int i, posicao = -1, codigo;
+    system("cls");
+    printf("Informe o Codigo do Produto para Alterar: ");
+    scanf("%d", &codigo);
+
+
+    for (i = 0; i < qtd; i++)
+    {
+        if (vProd[i].codigo == codigo)
+        {
+            posicao = i;
+            break;
+        }
+    }
+
+
+    if (posicao == -1)
+    {
+        printf("Produto com codigo %d nao encontrado!\n", codigo);
+    }
+    else
+    {
+
+        printf("Produto encontrado:\n");
+        printf("| %5d | %-30s | %6.2f |\n", vProd[posicao].codigo, vProd[posicao].descricao, vProd[posicao].preco);
+
+
+        printf("Digite a nova descricao: ");
+        getchar();
+        fgets(vProd[posicao].descricao, sizeof(vProd[posicao].descricao), stdin);
+        vProd[posicao].descricao[strcspn(vProd[posicao].descricao, "\n")] = '\0';
+
+        printf("Digite o novo preco: ");
+        scanf("%f", &vProd[posicao].preco);
+
+        printf("Produto alterado com sucesso!\n");
+
+        gravar(vProd, qtd);
+    }
+    system("pause");
+}
+
 int main()
 {
     tProd vProd[100];
@@ -208,6 +253,9 @@ int main()
             break;
         case 6:
             ordenar_produtos(vProd, qtd);
+            break;
+        case 7:
+            alterar_produto(vProd, qtd);
             break;
         case 0:
             printf("Encerrando...\n");
